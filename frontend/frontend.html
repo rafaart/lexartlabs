@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexartLabsSE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-2">
+        <div id="dropWeb" class="dropdown">
+        <button id="bttnWeb" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Web
+        <span class="caret"></span></button>
+        <ul id="webList" class="dropdown-menu" >
+          <li><a class="dropdown-item" href="#">HTML</a></li>
+          <li><a class="dropdown-item" href="#">CSS</a></li>
+          <li><a class="dropdown-item" href="#">JavaScript</a></li>
+        </ul>
+        </div>
+        </div>
+
+        <div class="col-sm-2">
+        <div id="dropCategorias" class="dropdown">
+        <button id="bttnCateg" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categorias
+        <span class="caret"></span></button>
+        
+        <ul id="categList" class="dropdown-menu" >
+          
+            <li><a class="dropdown-item" href="#">HTML</a></li>
+            <li><a class="dropdown-item" href="#">CSS</a></li>
+            <li><a class="dropdown-item" href="#">JavaScript</a></li>
+          
+        </ul>
+        </div>
+      </div>
+      
+
+      <input type="search" id="txtsearch" hint="pesquise aqui" gravity="center">
+      <button class="btn btn-primary" type="button" id="bttnsearch">Pesquisar</button>
+    </div>
+
+    <script>
+        $('.dropdown-item').click(function() {
+          document.getElementById("bttnCateg").innerText =( $(this).text() );
+          });
+
+          $(function() {
+          console.log(('#webList').dropselect())
+          })
+        
+    </script>
+</body>
+</html>
