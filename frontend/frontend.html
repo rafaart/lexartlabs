@@ -26,7 +26,7 @@
         <div class="col-sm-2">
         <div id="dropCategorias" class="dropdown">
         <button id="bttnCateg" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categorias
-        <span class="caret"></span></button>
+        <span ID="spanCateg" class="caret"></span></button>
         
         <ul id="categList" class="dropdown-menu" >
           
@@ -44,13 +44,17 @@
     </div>
 
     <script>
-        $('.dropdown-item').click(function() {
-          document.getElementById("bttnCateg").innerText =( $(this).text() );
+        
+
+          $('.dropdown-toggle').dropdown();
+          $('#webList li').on('click', function() {
+          $('#bttnWeb').html($(this).find('a').html());
           });
 
-          $(function() {
-          console.log(('#webList').dropselect())
-          })
+          $('.dropdown-toggle').dropdown();
+          $('#categList li').on('click', function() {
+          $('#bttnCateg').html($(this).find('a').html());
+          });
         
     </script>
 </body>
