@@ -43,6 +43,8 @@
       <button class="btn btn-primary" type="button" id="bttnsearch">Pesquisar</button>
     </div>
 
+    <main></main>
+
     <script>
         
 
@@ -54,12 +56,53 @@
           $('.dropdown-toggle').dropdown();
           $('#categList li').on('click', function() {
           $('#bttnCateg').html($(this).find('a').html());
-          });
+          })
 
-          
+          async function apiBuff() {
+            try {
+              const response = await fetch('http://localhost:4567/')
+              //console.log(response)
+              const data = await response.json()
+              console.log(data.results)
+              console.log(data.results[0].permalink)
+              show(data.results)
+            } catch (error) {
+              console.log(error)
+            }
+          }
+          apiBuff()
 
-          
+          function show(results) {
+            let output = ''
+
+            for( let result of results) {
+              output += 
+              `
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><img src="${result.thumbnail}" class="img-fluid" alt="quixote"></img></td>
+                    <td>
+                      <div>
+                        <h4>${result.title}</h4>
+                        <p>${result.address.city_name}</p>
+                        <p><strong>$ ${result.price}</strong></p>
+                        </div>
+                      </td>
+                    <td><button id="${result.permalink}" type="button" class="btn btn-primary" href="${result.permalink}" onclick="irNoSite(this.href)">ir no site</button></td>
+                  </tr>
+                  </tbody>  
+              </table>
+              `
+            }
+            document.querySelector('main').innerHTML = output
+          }
         
+          function irNoSite(adress) {
+            
+            var url = event.srcElement.id
+            window.open(url)
+          }
     </script>
 </body>
 </html>
