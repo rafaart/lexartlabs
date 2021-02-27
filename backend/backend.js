@@ -28,8 +28,8 @@ axios({
     // headers: { 'X-Requested-With': 'XMLHttpRequest' },
 })
     .then(function (response) {
-        console.log(response);
-        // console.log(response.data);
+        console.log(response.data);
+        //console.log('date created: ',response[0].data.created_at);
         // console.log(response.data['paging']);
         // console.log(response.data['results']);
         // console.log(response.data.results);

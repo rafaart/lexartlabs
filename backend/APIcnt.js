@@ -5,10 +5,14 @@ const app = express()
 
 app.use(cors())
 
-const category = 'Geladeira';
+let category = 'iphone';
 
-app.get('/', async(req, res) => {
+app.get('/:web/:categoria', async(req, res) => {
 
+    
+    console.log(req.params)
+    const filter = req.params
+    category = `${filter.web} + ${filter.categoria}`
     try {
     const {data} = await axios('https://api.mercadolibre.com/sites/MLB/search?q=' + category)
     return res.json(data)
