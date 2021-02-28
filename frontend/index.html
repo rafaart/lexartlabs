@@ -44,40 +44,41 @@
       </div>
       
 
-      <input type="search" id="txtsearch" hint="pesquise aqui" gravity="center">
+      <input type="search" id="txtsearch" gravity="center">
       <button class="btn btn-primary" type="button" id="bttnsearch">Pesquisar</button>
     </div>
 
 
     <main></main>
+    
 
     <script>
-    
-          $('.dropdown-toggle').dropdown()
-          $('#webList li').on('click', function() {
-          $('#bttnWeb').html($(this).find('a').html())
-          let filtroWeb= $('#bttnWeb').html()
-          apiBuff(filtroWeb, "")
-          })
 
-          $('.dropdown-toggle').dropdown()
-          $('#categList li').on('click', function() {
-          $('#bttnCateg').html($(this).find('a').html())
-          let filtroCategoria= $('#bttnCateg').html().value
-          apiBuff("", filtroCategoria)
-          })
+      $('.dropdown-toggle').dropdown()
+      $('#webList li').on('click', function() {
+        $('#bttnWeb').html($(this).find('a').html())
+      })
 
-          async function apiBuff(filtroWeb, filtroCategoria) {
+      $('.dropdown-toggle').dropdown()
+      $('#categList li').on('click', function() {
+        $('#bttnCateg').html($(this).find('a').html())
+      })
 
-            
-            let web = String(filtroWeb)
-            let categoria = String(filtroCategoria)
-            console.log(web)
+      $('#bttnsearch').on('click', function() {
+        apiBuff()
+      })
+
+          async function apiBuff() {
+
+            let txtSearch = ''
+            txtSearch = + document.getElementById("txtsearch").innerText
+            let web = window.document.getElementById("bttnWeb").innerText
+            let categoria = window.document.getElementById("bttnCateg").innerText
+            console.log(txtSearch)
                        
             try {
-              const response = await fetch(`http://localhost:4567/${web}/${categoria}`)
-              
-              //console.log(response)
+              const response = await fetch(`http://localhost:4567/${txtSearch}/${categoria}`)
+
               const data = await response.json()
               console.log(data.results)
               console.log(data.results[0].permalink)
@@ -86,7 +87,7 @@
               console.log(error)
             }
           }
-          //apiBuff()
+          apiBuff()
 
           function show(results) {
             let output = ''
