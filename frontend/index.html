@@ -35,9 +35,9 @@
         
         <ul id="categList" class="dropdown-menu" >
           
-            <li><a class="dropdown-item" href="#">Geladeira</a></li>
-            <li><a class="dropdown-item" href="#">Tv</a></li>
-            <li><a class="dropdown-item" href="#">Celular</a></li>
+            <li><a class="dropdown-item" name="MLB5726" href="#">Geladeira</a></li>
+            <li><a class="dropdown-item" name="MLB1000" href="#">Tv</a></li>
+            <li><a class="dropdown-item" name="MLB1051" href="#">Celular</a></li>
           
         </ul>
         </div>
@@ -61,7 +61,7 @@
 
       $('.dropdown-toggle').dropdown()
       $('#categList li').on('click', function() {
-        $('#bttnCateg').html($(this).find('a').html())
+        $('#bttnCateg').html($(this).find('a').text())
       })
 
       $('#bttnsearch').on('click', function() {
@@ -69,15 +69,23 @@
       })
 
           async function apiBuff() {
-
-            let txtSearch = ''
-            txtSearch = + document.getElementById("txtsearch").innerText
-            let web = window.document.getElementById("bttnWeb").innerText
-            let categoria = window.document.getElementById("bttnCateg").innerText
-            console.log(txtSearch)
+            //celular="MLB1051" geladeira/eletrodomestico="MLB5726" tv="MLB1000"
+            let txtSearch = ''+ document.getElementById("txtsearch").value
+            let web = ''+ window.document.getElementById("bttnWeb").innerText
+            let listCategoria = ''+ window.document.getElementById("bttnCateg").innerText
+            let categoria = ''
+            $('a').each(function(){
+              if($(this).text() == listCategoria){
+                categoria = $(this).html($('name').val()).attr('name')
+                console.log($(this).html($('name').val()).attr('name'))
+              }
+            })
+            
+            let pesquisa = 'q= '+txtSearch+'&category='+categoria
+            console.log(pesquisa)
                        
             try {
-              const response = await fetch(`http://localhost:4567/${txtSearch}/${categoria}`)
+              const response = await fetch(`http://localhost:4567/${web}/${pesquisa}`)
 
               const data = await response.json()
               console.log(data.results)
